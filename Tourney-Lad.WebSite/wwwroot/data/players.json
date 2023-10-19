@@ -1,0 +1,50 @@
+﻿[
+  {
+    "id": "0001",
+    "player-name": "test1",
+    "team": "team1",
+    "wins": "22",
+    "losses": "10",
+    "avatar": "https://2.gravatar.com/avatar/632d7e42211b7fcc6903e27f51802e59?size=256"
+  },
+  {
+    "id": "7612",
+    "player-name": "orb",
+    "team": "c9",
+    "wins": "10000",
+    "losses": "1",
+    "avatar": "https://www.researchgate.net/publication/228408900/figure/fig1/AS:301882221318148@1448985738964/An-image-with-resolution-256-x-256.png"
+  },
+  {
+    "id": "0002",
+    "player-name": "test2",
+    "team": "team1",
+    "wins": "22",
+    "losses": "10",
+    "avatar": "https://2.gravatar.com/avatar/632d7e42211b7fcc6903e27f51802e59?size=256"
+  },
+  {
+    "id": "0003",
+    "player-name": "test3",
+    "team": "team1",
+    "wins": "22",
+    "losses": "10",
+    "avatar": "https://2.gravatar.com/avatar/632d7e42211b7fcc6903e27f51802e59?size=256"
+  },
+  {
+    "id": "0004",
+    "player-name": "test4",
+    "team": "team1",
+    "wins": "22",
+    "losses": "10",
+    "avatar": "https://2.gravatar.com/avatar/632d7e42211b7fcc6903e27f51802e59?size=256"
+  },
+  {
+    "id": "0005",
+    "player-name": "test5",
+    "team": "team1",
+    "wins": "22",
+    "losses": "10",
+    "avatar": "https://avatars.akamai.steamstatic.com/582198d272462d466d391f6203cfce58228093b3_full.jpg"
+  }
+]
