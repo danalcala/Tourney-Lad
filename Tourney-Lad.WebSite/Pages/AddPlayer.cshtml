@@ -1,77 +1,42 @@
 ﻿@page
-@model Tourney_Lad.WebSite.Pages.AddPlayerModel
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Models.Players;
 @using System.Data.SqlClient
 @using Microsoft.AspNetCore.Identity;
 @using Tourney_Lad.WebSite.Areas.Identity.Data;
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-@{
 
-    ViewData["Title"] = "Add player";
-    var username = "";
-    var teamname = "";
-    var wins = "";
-    var losses = "";
-    var avatar = "";
-    var builder = WebApplication.CreateBuilder();
-    var connectionString = builder.Configuration.GetConnectionString("AuthDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AuthDbContextConnection' not found.");
-
-    if(Request.Method == "POST")
-    {
-        username = Request.Form["PlayerName"];
-        teamname = Request.Form["TeamName"];
-        wins = Request.Form["Wins"];
-        losses = Request.Form["Losses"];
-        avatar = Request.Form["Avatar"];
-
-        var sql = "INSERT INTO dbo.Players (Id, PlayerName, TeamName, Wins, Losses, Avatar, Creator) VALUES (@Id, @PlayerName, @TeamName, @Wins, @Losses, @Avatar, @Creator)";
-        using(var connection = new SqlConnection(connectionString))
-        {
-            using (var command = new SqlCommand(sql, connection))
-            {
-                command.Parameters.AddWithValue("@Id", Guid.NewGuid().ToString("N"));
-                command.Parameters.AddWithValue("@PlayerName", username);
-                command.Parameters.AddWithValue("@TeamName", teamname);
-                command.Parameters.AddWithValue("@Wins", wins);
-                command.Parameters.AddWithValue("@Losses", losses);
-                command.Parameters.AddWithValue("@Avatar", avatar);
-                command.Parameters.AddWithValue("@Creator", UserManager.GetUserAsync(User).Result?.Id);
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-        }
-    }
-}
 
 <div class="text-center">
     <h1 class="display-4">Add a new Player</h1>
 </div>
 
-<form method="post">
+<form asp-controller="AddPlayerModel" asp-action="PlayerSubmit" method="post">
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" name="PlayerName" placeholder="Username" value="@username">
+        <input asp-for="PlayerName" type="text" class="form-control" name="PlayerName" placeholder="Username">
         <label for="username">Username</label>
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" name="TeamName" placeholder="Team Name" value="@teamname">
-        <label for="username">Team Name</label>
+        <input asp-for="TeamName" type="text" class="form-control" name="TeamName" placeholder="Team Name">
+        <label for="teamname">Team Name</label>
     </div>
 
     <div class= "form-floating mb-3">
-        <input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" name="Wins" placeholder="0" value="@teamname">
+        <input asp-for="Wins" type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" name="Wins" placeholder="0">
         <label for="wins">Number of Wins</label>
     </div>
 
     <div class= "form-floating mb-3">
-        <input type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" name="Losses" placeholder="0" value="@teamname">
+        <input asp-for="Losses" type="number" min="0" oninput="this.value = Math.abs(this.value)" class="form-control" name="Losses" placeholder="0">
         <label for="losses">Number of Losses</label>
     </div>
 
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" name="Avatar" placeholder="Avatar" value="@teamname">
+        <input asp-for="Avatar" type="text" class="form-control" name="Avatar" placeholder="Avatar">
         <label for="avatar">Avatar Link</label>
     </div>
 
-    <input type="submit" class="btn btn-primary" value="Submit" />
+    <input type="submit" class="btn btn-primary" value="Submit" asp-page-handler="Submit"/>
 </form>
