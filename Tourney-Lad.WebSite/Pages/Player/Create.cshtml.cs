@@ -27,7 +27,7 @@ namespace Tourney_Lad.WebSite.Pages.Player
             PlayerInfo.Losses = Request.Form["losses"];
             PlayerInfo.Avatar = Request.Form["avatar"];
 
-            if (PlayerInfo.PlayerName.Length == 0 || PlayerInfo.TeamName.Length == 0 || PlayerInfo.Avatar.Length == 0)
+            if (PlayerInfo.PlayerName.Length == 0 || PlayerInfo.TeamName.Length == 0 || PlayerInfo.Wins.Length == 0 || PlayerInfo.Losses.Length == 0)
             {
                 errorMessage = "Please enter ALL fields!";
                 return;
@@ -67,8 +67,6 @@ namespace Tourney_Lad.WebSite.Pages.Player
             PlayerInfo.Wins = "";
             PlayerInfo.Losses = "";
             PlayerInfo.Avatar = "";
-
-            Response.Redirect("/Player/Index");
         }
     }
 }

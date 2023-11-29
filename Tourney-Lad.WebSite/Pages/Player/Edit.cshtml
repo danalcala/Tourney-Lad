@@ -1,16 +1,15 @@
 ﻿@page
-@model Tourney_Lad.WebSite.Pages.Player.CreateModel
+@model Tourney_Lad.WebSite.Pages.Player.EditModel
 @using Microsoft.AspNetCore.Identity;
 @using Tourney_Lad.WebSite.Areas.Identity.Data;
 @inject UserManager<ApplicationUser> UserManager;
 @{
-    ViewData["Title"] = "Create";
 }
 
 <br>
-<h2>New Player</h2>
+<h2>Edit Player</h2>
 
-@if(Model.errorMessage.Length > 0)
+@if (Model.errorMessage.Length > 0)
 {
     <div class='alert alert-warning alert-dismissible fade show' role='alert'>
         <strong>@Model.errorMessage</strong>
@@ -21,7 +20,6 @@
 @if (Model.successMessage.Length > 0)
 {
     var user = await UserManager.GetUserAsync(User);
-    Model.currentUserID = user?.Id;
     <div class="row mb-3">
         <div class="col-sm-9">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -33,6 +31,7 @@
 }
 
 <form method="post">
+    <input type="hidden" name="id" value="@Model.PlayerInfo.Id"/>
     <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Player Name</label>
         <div class="col-sm-6">

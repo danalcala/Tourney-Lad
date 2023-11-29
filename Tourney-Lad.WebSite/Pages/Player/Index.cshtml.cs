@@ -7,7 +7,7 @@ namespace Tourney_Lad.WebSite.Pages.Player
     public class IndexModel : PageModel
     {
         public List<PlayerInfo> listPlayers = new List<PlayerInfo>();
-
+        
         public void OnGet()
         {
             try
@@ -26,6 +26,7 @@ namespace Tourney_Lad.WebSite.Pages.Player
                             while (reader.Read())
                             {
                                 PlayerInfo playerInfo = new PlayerInfo();
+                                playerInfo.Id = reader.GetString(0);
                                 playerInfo.PlayerName = reader.GetString(1);
                                 playerInfo.TeamName = reader.GetString(2);
                                 playerInfo.Wins = "" + reader.GetInt32(3);
@@ -47,6 +48,7 @@ namespace Tourney_Lad.WebSite.Pages.Player
 
     public class PlayerInfo
     {
+        public string Id;
         public string PlayerName;
         public string TeamName;
         public string Wins;
