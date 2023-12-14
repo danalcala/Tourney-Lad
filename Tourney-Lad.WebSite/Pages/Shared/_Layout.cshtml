@@ -8,18 +8,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Tourney_Lad.WebSite</title>
+    <title>@ViewData["Title"] - Tourney Lad</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Tourney_Lad.WebSite.styles.css" asp-append-version="true" />
-    <link href="https://fonts.googleapis.com/css?family=Yellowtail&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-navbar border-bottom box-shadow mb-3 fixed-top h-10 vw-100">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-navbar border-bottom box-shadow mb-3 fixed-top h-10 vw-100">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Tourney_Lad</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Tourney Lad</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,17 +28,14 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-dark fw-bold text-decoration-underline" asp-area="" asp-page="/Index">Home</a>
                         </li>
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/AddPlayer">Add Player</a>
-                            </li>
-                        }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-bold text-decoration-underline" asp-area="" asp-page="/Player/Index">Ladder</a>
+                        </li>
                     </ul>
                 </div>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" style="color:aliceblue">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
                     <partial name="_LoginPartial.cshtml" />
                 </div>
             </div>
@@ -51,7 +49,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Tourney_Lad - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2023 - Tourney Lad
         </div>
     </footer>
 

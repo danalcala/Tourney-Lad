@@ -1,0 +1,27 @@
+﻿@page
+@using System.Data.SqlClient;
+@{
+    try
+    {
+        String id = Request.Query["id"];
+
+        var builder = WebApplication.CreateBuilder();
+        var connectionString = builder.Configuration.GetConnectionString("AuthDbContextConnection");
+
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+            String sqlCmd = "DELETE FROM AuthSystemDB.dbo.Players WHERE Id=@id";
+            using (SqlCommand command = new SqlCommand(sqlCmd, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+            }
+        }
+        Response.Redirect("/Player/Index");
+    }
+    catch (Exception ex)
+    {
+    }
+}

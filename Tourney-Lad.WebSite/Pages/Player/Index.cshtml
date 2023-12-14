@@ -1,0 +1,49 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity;
+@using Tourney_Lad.WebSite.Areas.Identity.Data;
+@model Tourney_Lad.WebSite.Pages.Player.IndexModel
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Ladder";
+}
+
+<br>
+<h2>Player List</h2>
+@if (SignInManager.IsSignedIn(User))
+{
+    <a class="btn btn-primary btn-sm" href='/Player/Create'>Add Player</a>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Player Name</th>
+            <th>Team Name</th>
+            <th><b><u>Wins</u></b></th>
+            <th><b>Losses</b></th>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <th><b>Edit or Delete</b></th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listPlayers.OrderByDescending(x => x.Wins))
+        {
+            <tr>
+                <td></td>
+                <td>@item.PlayerName</td>
+                <td>@item.TeamName</td>
+                <td>@item.Wins</td>
+                <td>@item.Losses</td>
+                <td>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <a class="btn btn-primary btn-sm" href="/Player/Edit?id=@item.Id">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="/Player/Delete?id=@item.Id">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -11,7 +11,11 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+builder.Services.AddAuthentication()
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Areas/Identity/Pages/Account/Login";
+                });
 
 var app = builder.Build();
 

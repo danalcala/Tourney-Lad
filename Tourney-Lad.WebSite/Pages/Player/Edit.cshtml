@@ -1,0 +1,74 @@
+﻿@page
+@model Tourney_Lad.WebSite.Pages.Player.EditModel
+@using Microsoft.AspNetCore.Identity;
+@using Tourney_Lad.WebSite.Areas.Identity.Data;
+@inject UserManager<ApplicationUser> UserManager;
+@{
+}
+
+<br>
+<h2>Edit Player</h2>
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <strong>@Model.errorMessage</strong>
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+    </div>
+}
+
+@if (Model.successMessage.Length > 0)
+{
+    var user = await UserManager.GetUserAsync(User);
+    <div class="row mb-3">
+        <div class="col-sm-9">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>@Model.successMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+}
+
+<form method="post">
+    <input type="hidden" name="id" value="@Model.PlayerInfo.Id"/>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Player Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="playername" value="@Model.PlayerInfo.PlayerName" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Team Name</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="teamname" value="@Model.PlayerInfo.TeamName" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Wins</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" min="0" name="wins" value="@Model.PlayerInfo.Wins" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Losses</label>
+        <div class="col-sm-6">
+            <input type="number" class="form-control" min="0" name="losses" value="@Model.PlayerInfo.Losses" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Avatar Link</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="avatar" value="@Model.PlayerInfo.Avatar" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/Player/Index">Cancel</a>
+        </div>
+    </div>
+</form>
